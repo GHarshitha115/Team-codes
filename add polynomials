@@ -1,0 +1,102 @@
+dic1 = {}
+dic2 = {}
+dic3 = {}
+dic4 = {}
+c=0
+n=int(input())
+for i in range(n):
+    s = input().split()
+    dic1.update({int(s[0]):int(s[1])})
+m=int(input())
+for i in range(m):
+    s = input().split()
+    dic2.update({int(s[0]):int(s[1])})
+for key in dic1:
+    if key in dic2:
+        print(key,dic1[key],dic2[key])
+        dic2[key]=dic1[key]+dic2[key]
+    else:
+        print(key,dic1[key])
+        dic2.update({key:dic1[key]})
+#print(dic2)
+for i in dic2:
+    if dic2[i]!=0:
+        dic4.update({i:dic2[i]})
+dic4=sorted(dic4.items(),key=lambda x:x[0],reverse=True)
+#print(dic4)
+if len(dic4)==0:
+    print("0")
+else:
+    c=0
+    for k,v in dic4:
+        if k==0 and c<1:
+            c+=1
+            if v>0:
+                print(str(v),end="")
+            else:
+                print("-"+str(abs(v)),end="")
+        elif k==0:
+            if v>0:
+                 print(' + '+str(v),end="")
+            else:
+                print(" - "+str(abs(v)),end="")
+        elif k==1 and c<1:
+            c+=1
+            if v>0:
+                if v==1:
+                   print("x",end="")
+                else:
+                    print(str(v)+'x',end="")
+            else:
+                if str(v)=="-1":
+                    print(" - "+"x",end="")
+                else:
+                    print("-"+str(abs(v))+'x',end="")
+         
+        elif k==1:
+            if v>0:
+                if v==1:
+                   print(" + "+"x^",end="")
+                else:
+                    print(' + '+str(v)+'x',end="")
+            else:
+                if str(v)=="-1":
+                    print(" - "+"x",end="")
+                else:
+                    print(" - "+str(abs(v))+'x',end="")
+        elif k>1 and c<1:
+            c+=1
+            if v>0:
+                if v==1:
+                   print("x"+str(k),end="")
+                else:
+                    print(str(v)+'x^'+str(k),end="")
+            else:
+                if str(v)=="-1":
+                    print(" - "+"x^"+str(k),end="")
+                else:
+                    print("-"+str(abs(v))+'x^'+str(k),end="")
+        elif k>1:
+            if v>0:
+                if v==1:
+                   print(" + "+"x^"+str(k),end="")
+                else:
+                    print(" + "+str(v)+"x^"+str(k),end="")
+            else:
+                if str(v)=="-1":
+                    print(" - "+"x^"+str(k),end="")
+                else:
+                    print(" - "+str(abs(v))+"x^"+str(k),end="")
+    print()
+
+'''for k,v in dic4:
+    if k>1 and v!=0:
+        print(str(v)+'x^'+str(k)+' + ',end="")
+    elif k==1 and v!=0:
+        print(str(v)+'x'+' + ',end="")
+    elif k==0 and v!=0:
+        print(str(v))
+    elif v==0:
+        c+=1
+if c==len(dic4):
+    print("0")'''
